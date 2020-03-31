@@ -81,6 +81,7 @@ if __name__ == "__main__":
     var_array = [0] # Variance Array Initialization
     dev_array = [0] # Deviation Array Initialization
     results = np.zeros(37, dtype=int) # Initialization for Obtained Roulette's Values
+    print("Cargando "+str(iterations)+" iteraciones...")
     for i in range(1, iterations):
         for j in range(0, i):
             # Playing Roulette and Analyzing the Obtained Numbers
@@ -90,11 +91,11 @@ if __name__ == "__main__":
         rfr_array.append(results[one_number]/sum(results))
         avg_array.append(round(average_with_frecuency(results, i), 6))
         # avg_array.append(round(np.average(results, weights=numbers), 6))
-        varianze = round(variance_with_frecuency(results, i), 6)
-        var_array.append(varianze)
-        dev_array.append(round(deviation_with_frecuency(varianze), 6))
+        variance = round(variance_with_frecuency(results, i), 6)
+        var_array.append(variance)
+        dev_array.append(round(deviation_with_frecuency(variance), 6))
         results = np.zeros(37, dtype=int) # Reset for all Obtained Roulette's Values
-        print(i)
+    print()
     
     # Graphs
     fig, axs = plt.subplots(2, 2)
