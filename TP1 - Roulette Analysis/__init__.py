@@ -56,7 +56,7 @@ if __name__ == "__main__":
     
     # All 'European' Roulette Numbers from 0 to 36 (Total: 37)
     numbers = np.arange(0, 37)
-
+    
     # Expected Values
     rfr_expected = round(1/len(numbers), 3)     # Relative Frecuency Expected (1/37)
     avg_expected = round(np.mean(numbers), 3)   # Average (Mean) Expected (666/37)
@@ -69,11 +69,16 @@ if __name__ == "__main__":
     print()
 
     # Total Iterations
-    iterations = abs(int(input("Ingrese Iteraciones (Tiradas): ")))
+    iterations = 0
+    while (iterations==0):
+        iterations = abs(int(float(input("Ingrese Iteraciones (Tiradas): "))))
     print()
 
-    # I need any number for the Analysis too, so I will use a Random One
-    one_number = rand.randint(0, 36)
+    # Any Number for the Analysis
+    one_number = 37
+    while (one_number>36):
+        one_number = abs(int(float(input("Ingrese su Número (Entre 0 y 36): "))))
+    print()
 
     # For Every Iteration: Mean-Deviaton-Variance Values & Relative Frecuency of One Number
     rfr_array = [0] # Relative Frecuencies of One Number Array Initialization
@@ -104,26 +109,23 @@ if __name__ == "__main__":
     axs[0, 0].plot(rfr_array, 'tab:blue', label="FRN")
     axs[0, 0].set_title("Frecuencia Relativa")
     axs[0, 0].axhline(rfr_expected, color='red', linestyle='--', label="FRE")
-    axs[0, 0].legend()
     plt.setp(axs[0, 0], ylabel="FR del Número "+str(one_number))
 
     axs[0, 1].plot(avg_array, 'tab:orange', label="VPN")
     axs[0, 1].set_title('Valor Promedio')
     axs[0, 1].axhline(avg_expected, color='red', linestyle='--', label="VPE")
-    axs[0, 1].legend()
 
     axs[1, 0].plot(var_array, 'tab:green', label="VVN")
     axs[1, 0].set_title('Varianza')
     axs[1, 0].axhline(var_expected, color='red', linestyle='--', label="VVE")
-    axs[1, 0].legend()
 
     axs[1, 1].plot(dev_array, 'tab:purple', label="VDN")
     axs[1, 1].set_title('Desvío')
     axs[1, 1].axhline(dev_expected, color='red', linestyle='--', label="VDE")
-    axs[1, 1].legend()
-
+    
     for ax in fig.get_axes():
         ax.grid(True)
+        ax.legend()
         plt.setp(ax, xlabel="Número de Tiradas")
     
     fig.tight_layout()
