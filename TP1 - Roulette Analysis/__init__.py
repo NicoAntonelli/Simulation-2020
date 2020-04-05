@@ -71,16 +71,16 @@ if __name__ == "__main__":
     print("Cargando "+str(iterations)+" iteraciones...")
     acum_load_time = 0 # Variable Needed for Time Measurement
     for i in range(results):
-        for j in range(1, iterations+1):
+        for n in range(1, iterations+1):
             # Playing Roulette and Analyzing the Obtained Numbers
-            roulette_values = np.random.randint(0, 37, j) # Random Numbers Generator (Total = J Numbers)
+            roulette_values = np.random.randint(0, 37, n) # Random Numbers Generator (Total = N Numbers)
             # Occurrences Counter of One_Number (The Input Number)
             one_number_occurrences = np.count_nonzero(roulette_values == one_number)
             # Filling Important Arrays (In the Matrix Position for the Actual Results Array)
-            rfr_array[i][j] = one_number_occurrences / j
-            avg_array[i][j] = round(np.mean(roulette_values), 6)
-            var_array[i][j] = variance = round(np.var(roulette_values), 6)
-            dev_array[i][j] = round(variance ** 0.5, 6) # Standard Deviation is the Square Root of Variance
+            rfr_array[i][n] = one_number_occurrences / n                    # Relative Frecuency of "One_Number"
+            avg_array[i][n] = round(np.mean(roulette_values), 6)            # Average (Mean)
+            var_array[i][n] = variance = round(np.var(roulette_values), 6)  # Variance
+            dev_array[i][n] = round(variance ** 0.5, 6)                     # Standard Deviation (Square Root of Variance)
         # Calculate and Show intermediate processing Time
         last_load_time = time.time() - start_time - acum_load_time
         acum_load_time = time.time() - start_time
