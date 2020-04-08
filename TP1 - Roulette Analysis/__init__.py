@@ -182,7 +182,7 @@ def load_every_result_graphs(frecuencies, averages, variances, deviations, save)
             print("2do 4-Stack de Gráficos NO fue guardado porque hubo un problema")
         print()
 
-# Time Measuement
+# Time Measurement
 def measure_time():
     return time.perf_counter()
 
