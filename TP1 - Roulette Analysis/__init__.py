@@ -47,10 +47,30 @@ def calc_deviation_from_variance(variance):
 
 # Load (for Plotting) One Array of Results
 # Graphs Loaded: Relative Frecuency, Mean, Variance, Deviation (4-Graph Stack)
-def load_one_result_graphs(frecuencies, averages, variances, deviations, save):
-    # Subplots and Title Configs
+def load_one_result_graphs(frecuencies, averages, variances, deviations, save, final=False):
+    # Subplots Config
     fig, axs = plt.subplots(2, 2)
-    fig.canvas.set_window_title("Simulación de Ruleta: Análisis (de 0 a "+str(iterations)+" tiradas) - Stack 1")
+
+    # Title and Names Config
+    if final:
+        filename="final_"
+        message="3er 4-Stack de Gráficos"
+        fig.canvas.set_window_title("Análisis 3er Stack: Promedio de Arrays de Resultados (de 0 a "+str(iterations)+" tiradas)")
+    else:
+        filename="simple_"
+        message="1er 4-Stack de Gráficos"
+        fig.canvas.set_window_title("Análisis 1er Stack: 1 Array de Resultados (de 0 a "+str(iterations)+" tiradas)")
+
+    # Set Window Position
+    manager = plt.get_current_fig_manager() # Current Window's Manager
+    screen_x, screen_y = manager.window.wm_maxsize() # Screen Size
+    if final:
+        coord_x = str(int(screen_x/4))
+        coord_y = str(int(screen_y/2))
+    else:
+        coord_x = ("0")
+        coord_y = ("0")
+    manager.window.wm_geometry("+" + coord_x + "+" + coord_y) # Set Values
 
     # Relative Frecuencies Graph
     axs[0, 0].plot(frecuencies, 'tab:blue', label="FRN")
@@ -83,18 +103,27 @@ def load_one_result_graphs(frecuencies, averages, variances, deviations, save):
     # Save Plot (PNG Image)
     if save:
         try:
-            plt.savefig(save_route+"graph_iterations_"+str(iterations)+".png")
-            print("1er 4-Stack de Gráficos Guardado Correctamente")
+            plt.savefig(save_route + filename + "graph_iterations_" + str(iterations) + ".png")
+            print(message + " Guardado Correctamente")
         except:
-            print("1er 4-Stack de Gráficos NO fue guardado porque hubo un problema")
+            print(message + " NO fue guardado porque hubo un problema")
         print()
 
 # Load (for Plotting) Every Array of Results Simultaneously
 # Graphs Loaded: Relative Frecuency, Mean, Variance, Deviation (4-Graph Stack)
 def load_every_result_graphs(frecuencies, averages, variances, deviations, save):
-    # Subplots and Title Configs
+    # Subplots Config
     fig, axs = plt.subplots(2, 2)
-    fig.canvas.set_window_title("Simulación de Ruleta: Análisis (de 0 a "+str(iterations)+" tiradas) - Stack 2")
+
+    # Title Config
+    fig.canvas.set_window_title("Análisis 2do Stack: Todos los Arrays de Resultados (de 0 a "+str(iterations)+" tiradas)")
+
+    # Set Window Position
+    manager = plt.get_current_fig_manager() # Current Window's Manager
+    screen_x, screen_y = manager.window.wm_maxsize() # Screen Size
+    coord_x = str(int(screen_x/2))
+    coord_y = "0"
+    manager.window.wm_geometry("+" + coord_x + "+" + coord_y) # Set Values
 
     # Relative Frecuencies Graph
     axs[0, 0].plot(frecuencies[0], 'tab:blue')
@@ -147,11 +176,15 @@ def load_every_result_graphs(frecuencies, averages, variances, deviations, save)
     # Save Plot (PNG Image)
     if save:
         try:
-            plt.savefig(save_route+"multi_graph_iterations_"+str(iterations)+".png")
+            plt.savefig(save_route + "multi_graph_iterations_" + str(iterations) + ".png")
             print("2do 4-Stack de Gráficos Guardado Correctamente")
         except:
             print("2do 4-Stack de Gráficos NO fue guardado porque hubo un problema")
         print()
+
+# Time Measuement
+def measure_time():
+    return time.perf_counter()
 
 
 # Main
@@ -192,7 +225,7 @@ if __name__ == "__main__":
     print()
     
     # Timer (Execution Time Measurement)
-    start_time = time.time()
+    start_time = measure_time()
 
     # For Every Iteration: Mean-Deviaton-Variance Values & Relative Frecuency of One Number
     # Matix Re-Size: Arrays of Arrays, Needed for the Graph with few "Results" simultaniously
@@ -217,25 +250,35 @@ if __name__ == "__main__":
             
         # Feedback: Calculate and Show intermediate processing Time
         if calculate_time:
-            last_load_time = time.time() - start_time - acum_load_time
-            acum_load_time = time.time() - start_time
-            print("Array Resultado "+str(i+1)+" de "+str(results)+" completado en "+str(round(last_load_time, 6))+ " segundos")
+            last_load_time = measure_time() - start_time - acum_load_time
+            acum_load_time = measure_time() - start_time
+            print("Array Resultado " + str(i+1) + " de "+str(results) + " completado en " + str(round(last_load_time, 6)) + " segundos")
         else:
-            print("Array Resultado "+str(i+1)+" de "+str(results)+" completado")
+            print("Array Resultado " + str(i+1) + " de "+str(results) + " completado")
 
     # Total Calculation Time
     if calculate_time:
-        final_time = round(time.time() - start_time, 6)
-        print("Todos los Arrays de Resultados fueron completados en "+str(final_time)+ " segundos")
+        final_time = round(measure_time() - start_time, 6)
+        print("Todos los Arrays de Resultados fueron completados en " + str(final_time) + " segundos")
     else:
         print("Todos los Arrays de Resultados fueron completados")
     print()
     
+    # PLOTTING
+
     # First Array of Results' Graphs
     load_one_result_graphs(rfr_array[0], avg_array[0], var_array[0], dev_array[0], save)
     
     # Now, Comparing all the Results Array at the same Time
     load_every_result_graphs(rfr_array, avg_array, var_array, dev_array, save)
+
+    # New Result Array with the Average of all Results Arrays
+    final_rfr_array = (rfr_array[0] + rfr_array[1] + rfr_array[2] + rfr_array[3] + rfr_array[4] + rfr_array[5]) / results
+    final_avg_array = (avg_array[0] + avg_array[1] + avg_array[2] + avg_array[3] + avg_array[4] + avg_array[5]) / results
+    final_var_array = (var_array[0] + var_array[1] + var_array[2] + var_array[3] + var_array[4] + var_array[5]) / results
+    final_dev_array = (dev_array[0] + dev_array[1] + dev_array[2] + dev_array[3] + dev_array[4] + dev_array[5]) / results
+
+    load_one_result_graphs(final_rfr_array, final_avg_array, final_var_array, final_dev_array, save, final=True)
 
     # Plotting all the Graphs
     plt.show()
