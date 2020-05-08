@@ -3,7 +3,7 @@
 
 """
 UTN FRRO - Simulation 2020
-TP1 - Roulette Analysis
+TP1.1 - Roulette Analysis
 
 Author: Antonelli, Nicolás (44852)
 Professor: Torres, Juan
@@ -103,10 +103,11 @@ def load_one_result_graphs(frecuencies, averages, variances, deviations, save, f
     # Save Plot (PNG Image)
     if save:
         try:
-            plt.savefig(save_route + filename + "graph_iterations_" + str(iterations) + ".png")
-            print(message + " Guardado Correctamente")
+            save_route_full = save_route + filename + "graph_iterations_" + str(iterations) + ".png"
+            plt.savefig(save_route_full)
+            print(message + " Guardado Correctamente en " + save_route_full)
         except:
-            print(message + " NO fue guardado porque hubo un problema")
+            print(message + " NO fue guardado en " + save_route_full + " porque hubo un problema")
         print()
 
 # Load (for Plotting) Every Array of Results Simultaneously
@@ -176,10 +177,11 @@ def load_every_result_graphs(frecuencies, averages, variances, deviations, save)
     # Save Plot (PNG Image)
     if save:
         try:
-            plt.savefig(save_route + "multi_graph_iterations_" + str(iterations) + ".png")
-            print("2do 4-Stack de Gráficos Guardado Correctamente")
+            save_route_full = save_route + "multi_graph_iterations_" + str(iterations) + ".png"
+            plt.savefig(save_route_full)
+            print("2do 4-Stack de Gráficos Guardado Correctamente en " + save_route_full)
         except:
-            print("2do 4-Stack de Gráficos NO fue guardado porque hubo un problema")
+            print("2do 4-Stack de Gráficos NO fue guardado en " + save_route_full + " porque hubo un problema")
         print()
 
 # Time Measurement
