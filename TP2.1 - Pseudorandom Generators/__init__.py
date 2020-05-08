@@ -78,10 +78,15 @@ def testEvenOdd(array):
     for i in range(len(array)):
         if (array[i] % 2 != 0):
             odds += 1
+    orf = odds/len(array)
     print('------------PARITY TEST------------')
     print('Total length of the array:', len(array))
     print('Odds Absolute Frequency:', odds)
-    print('Odds Relative Frequency:', odds/len(array))
+    print('Odds Relative Frequency:', orf)
+    if(orf<0.47 or orf>0.53):
+        print('It seems that this is not a good generator, or may be more iterations are needed')
+    else:
+        print('It seems to be a good generator')        
     print('-----------------------------------')
 
 # Main
@@ -118,9 +123,11 @@ if __name__ == '__main__':
     # test it with different seeds, then delete
     middle_square_method_understanding(1245, 1)
     # the real one
-    values = middle_square_method(9731,25)
-    testEvenOdd(values)
+    values = middle_square_method(9731,75)
+    
+    # Tests
 
+    testEvenOdd(values)  # 5787 passes the test, 9731 does not
     # Scatter Plots (Simultaneously)
     sns.scatterplot(data=multiplicative_random_values)
     sns.scatterplot(data=mixed_random_values)
