@@ -1,9 +1,9 @@
 import numpy as np
-import random as rand
+
 
 # Linear Congruential Generator (LGC)
-def linear_congruential_generator(M, A, C, X0, total):
-    x_values = [X0]
+def linear_congruential_generator(M, A, C, seed, total):
+    x_values = [seed]
     for _ in range (total-1):
         x_values.append((x_values[-1] * A + C) % M)
     x_values = np.array(x_values)
@@ -21,25 +21,16 @@ def middle_square_method(seed, total):
     for _ in range(total):
         newSeed = newSeed**2
         value_str = list(map(int, str(newSeed)))
-        for i in range(8-len(value_str)):
-            value_str.insert(0, 0)
-        
-        newSeed = ''
-        for i in range(2, 6):
-            value_str[i] = str(value_str[i])
-            newSeed += value_str[i]
-        newSeed = int(newSeed)
+
+        for i in range(8 - len(value_str)):
+            value_str.insert(i, 0)
+
+        newSeed = int(''.join(str(i) for i in value_str[2:6]))
         x_values.append(newSeed)
-    for i in range(total):
-        x_values[i] = x_values[i] / 10000
+    x_values = np.array(x_values) / 10000
     return x_values
 
 
-# Python's Own Generator
+# Python's own generator (Mersenne Twister)
 def python_generator(n):
-    # rand.seed() ?
-    x_values = []
-    for _ in range(n):
-        nextRand = rand.random()
-        x_values.append(nextRand)
-    return x_values
+    return np.random.random_sample(n)
