@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 import numpy as np
 
 
@@ -23,7 +25,7 @@ def middle_square_method(seed, total):
         value_str = list(map(int, str(newSeed)))
 
         for i in range(8 - len(value_str)):
-            value_str.insert(i, 0)
+            value_str.insert(0, 0)
 
         newSeed = int(''.join(str(i) for i in value_str[2:6]))
         x_values.append(newSeed)

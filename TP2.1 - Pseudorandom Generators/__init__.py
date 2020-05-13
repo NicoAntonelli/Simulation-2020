@@ -9,37 +9,44 @@ Professor: Torres, Juan
 Final Date: 16/05/2020
 
 Python Libraries/Modules Used:
-    - Numpy: Random Numbers and Array Manipulation
-    - Pyplot: Matplotlib Module for Graph Plotting
-    - Seaborn: Statistical and Scientific Graphs
+    - Numpy:    Random Numbers and Array Manipulation
+    - Pyplot:   Matplotlib Module for Graph Plotting
+    - Seaborn:  Statistical and Scientific Graphs
+    - Scypy:    Distributions like χ2
+(?) - Pandas:   THE TABLE...
+
+Other Files:
+    - generators:   File with our pseudorandom numbers generators
+    - tests:        File with our randomization tests
+    - plots:        File with our plotting functions (and the complete saving route (?))
 '''
 
-import matplotlib.pyplot as plt
-from tests import testEvenOdd
+from tests import goodness_fit_test, even_odd_test
 from generators import linear_congruential_generator, middle_square_method, python_generator
-from plots import graphing_scatterplots, graphing_histograms
+from plots import graphing_scatterplots, graphing_histograms, graphing_show_all
+
 
 # Main
 if __name__ == '__main__':
     # General Parameters (all parameters can also be asked)
     total_numbers = 300
-
-    # LGC Parameters
-    M = 2**31 - 1
-    A = 1103515245
-    C = 0
-    seed = 876543210 # X0
+    # TO-DO: Save and directory parameters
 
     print("PSEUDORANDOM GENERATORS")
     print()
 
     # Middle Square Method
-    msm_values = middle_square_method(9731, total_numbers)
+    seed = 9731
+    msm_values = middle_square_method(seed, total_numbers)
     print("Middle Square Method")
     print(msm_values)
     print()
 
     # Congruential Multiplicative Generator (C = 0)
+    M = 2**31 - 1
+    A = 1103515245
+    C = 0
+    seed = 876543210
     multiplicative_random_values = linear_congruential_generator(M, A, C, seed, total_numbers)
     print("Multiplicative LCG")
     print(multiplicative_random_values)
@@ -60,15 +67,36 @@ if __name__ == '__main__':
 
     # Tests
     print("TESTS: Middle Square Method")
-    testEvenOdd(msm_values)  # 5787 passes the test, 9731 does not
+    print()
+    goodness_fit_test(msm_values)
+    even_odd_test(msm_values)  # 5787 passes the test, 9731 does not
+    print('-----------------------------------\n')
+
     print("TESTS: Multiplicative Linear Congruential Generator")
-    testEvenOdd(multiplicative_random_values)
+    print()
+    goodness_fit_test(multiplicative_random_values)
+    even_odd_test(multiplicative_random_values)
+    print('-----------------------------------\n')
+
     print("TESTS: Mixed Linear Congruential Generator")
-    testEvenOdd(mixed_random_values)
+    print()
+    goodness_fit_test(mixed_random_values)
+    even_odd_test(mixed_random_values)
+    print('-----------------------------------\n')
+    
     print("TESTS: Python's own generator (Mersenne Twister)")
-    testEvenOdd(pog_mt_values)
+    print()
+    goodness_fit_test(pog_mt_values)
+    even_odd_test(pog_mt_values)
+    print('-----------------------------------\n')
+
+    # TO-DO: Make other 2 tests...
+
+    # TO-DO: Pandas --> Tests Table...
 
     # Plots
     graphing_scatterplots(msm_values, multiplicative_random_values, mixed_random_values, pog_mt_values)
     graphing_histograms(msm_values, multiplicative_random_values, mixed_random_values, pog_mt_values)
-    plt.show()
+    graphing_show_all()
+
+    # TO-DO: Optional save method (try-catched)...

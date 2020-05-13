@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 import matplotlib.pyplot as plt
 import seaborn as sns
 
@@ -63,3 +65,7 @@ def graphing_histograms(msm_values, multiplicative_random_values, mixed_random_v
     plt.setp(fig.get_axes(), xlabel="Number", ylabel="Random Value")
     plt.legend()
     plt.tight_layout()
+
+
+def graphing_show_all():
+    plt.show()
