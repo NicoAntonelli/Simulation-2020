@@ -21,7 +21,7 @@ Other Files:
     - plots:        File with our plotting functions (and the complete saving route (?))
 '''
 
-from tests import goodness_fit_test, even_odd_test
+from tests import goodness_fit_test, even_odd_test, test_Kolmogorov_Smirnov, test_gaps
 from generators import linear_congruential_generator, middle_square_method, python_generator
 from plots import graphing_scatterplots, graphing_histograms, graphing_show_all
 
@@ -29,7 +29,7 @@ from plots import graphing_scatterplots, graphing_histograms, graphing_show_all
 # Main
 if __name__ == '__main__':
     # General Parameters (all parameters can also be asked)
-    total_numbers = 300
+    total_numbers = 380
     # TO-DO: Save and directory parameters
 
     print("PSEUDORANDOM GENERATORS")
@@ -70,24 +70,33 @@ if __name__ == '__main__':
     print()
     goodness_fit_test(msm_values)
     even_odd_test(msm_values)  # 5787 passes the test, 9731 does not
+    test_Kolmogorov_Smirnov(msm_values)
+    test_gaps(msm_values)
     print('-----------------------------------\n')
 
     print("TESTS: Multiplicative Linear Congruential Generator")
     print()
     goodness_fit_test(multiplicative_random_values)
     even_odd_test(multiplicative_random_values)
+    test_Kolmogorov_Smirnov(multiplicative_random_values)
+    test_gaps(multiplicative_random_values)
     print('-----------------------------------\n')
 
     print("TESTS: Mixed Linear Congruential Generator")
     print()
     goodness_fit_test(mixed_random_values)
     even_odd_test(mixed_random_values)
+    test_Kolmogorov_Smirnov(mixed_random_values)
+    test_gaps(mixed_random_values)
     print('-----------------------------------\n')
     
     print("TESTS: Python's own generator (Mersenne Twister)")
     print()
     goodness_fit_test(pog_mt_values)
     even_odd_test(pog_mt_values)
+    test_Kolmogorov_Smirnov(pog_mt_values)
+    test_gaps(pog_mt_values)
+
     print('-----------------------------------\n')
 
     # TO-DO: Make other 2 tests...
