@@ -9,5 +9,10 @@ Statistical analysis of a European roulette made through a simulation
 ## [TP1.2] - Strategies Roulette Simulation
 Different strategies for playing roulette will be used (simulated) in order to analyze the benefits and / or disadvantages of them
 
+## [TP2.1] - Pseudorandom Generators
+Study of pseudo-random numbers generators, then performing generation quality tests on them
+
+
 [TP1.1]: ./TP1.1&#32;-&#32;Roulette&#32;Analysis
 [TP1.2]: ./TP1.2&#32;-&#32;Roulette&#32;Strategies
+[TP2.1]: ./TP2.1&#32;-&#32;Pseudorandom&#32;Generators

@@ -14,7 +14,7 @@ def goodness_fit_test(array):
     c_classes       = np.zeros(d_total_classes)         # All classes (counters of occurrences, stated at zero)
     
     # Calculating every class occurrences
-    # It would be approx to e_expected_frec in every class in order to approve the Null Hypotesis through this test
+    # It would be approx to e_expected_frec in every class in order to approve the Null Hypothesis through this test
     for number in array:
         i_class = int((number * d_total_classes) // 1)  # Class number = integer part of (n*d)
         c_classes[i_class] += 1
@@ -28,14 +28,14 @@ def goodness_fit_test(array):
     # Critic region: printable presentation
     region_str = "{χ2 ≤ " + str(round(critic_min, 6)) + "} ∪ {χ2 ≥ " + str(round(critic_max, 6)) + "}"
     
-    # Null Hypotesis approbation or rejection
+    # Null Hypothesis approbation or rejection
     if (pearson <= critic_min or pearson >= critic_max):
-        result_msg = "Null hypotesis REJECTION, this list doesn't correspond to an uniform U(0,1) distribution\n"
+        result_msg = "Null hypothesis REJECTION, this list doesn't correspond to an uniform U(0,1) distribution\n"
         result_msg += "This is because " + str(round(pearson, 6)) + " is on the region " + region_str
         result = "Rejected"
 
     else:
-        result_msg = "Null hypotesis ACCEPTATION, this list indeed correspond to an uniform U(0,1) distribution\n"
+        result_msg = "Null hypothesis ACCEPTATION, this list indeed correspond to an uniform U(0,1) distribution\n"
         result_msg += "This is because " + str(round(pearson, 6)) + " is NOT on the region " + region_str
         result = "Approved"
     
@@ -95,10 +95,10 @@ def test_Kolmogorov_Smirnov(array):
 
     print('is', max_general, ' < ', d_kolmogorov, ' ?')
     if max_general > d_kolmogorov:
-        print("Null hypotesis REJECTION, the list of values doesn't correspond to an uniform U(0,1) distribution")
+        print("Null hypothesis REJECTION, the list of values doesn't correspond to an uniform U(0,1) distribution")
         result = "Rejected"
     else: 
-        print("Null hypotesis ACCEPTATION, the list of values does correspond to an uniform U(0,1) distribution")
+        print("Null hypothesis ACCEPTATION, the list of values does correspond to an uniform U(0,1) distribution")
         result = "Approved"
     print()
     return result
@@ -157,10 +157,10 @@ def test_gaps(array):
 
     print('is', our_chi_squared_value, ' < ', chi_squared_table_value, ' ?')
     if (our_chi_squared_value > chi_squared_table_value): 
-      print("Null hypotesis REJECTION, these numbers are not independent according to the GAPS TEST")
+      print("Null hypothesis REJECTION, these numbers are not independent according to the GAPS TEST")
       result = "Rejected"
     else: 
-        print("Null hypotesis ACCEPTATION, these numbers are independent according to the GAPS TEST")
+        print("Null hypothesis ACCEPTATION, these numbers are independent according to the GAPS TEST")
         result = "Approved"
     print()
     return result

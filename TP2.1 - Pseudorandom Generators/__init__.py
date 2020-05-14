@@ -18,7 +18,7 @@ Python Libraries/Modules Used:
 Other Files:
     - generators:   File with our pseudorandom numbers generators
     - tests:        File with our randomization tests
-    - plots:        File with our plotting functions (and the complete saving route (?))
+    - plots:        File with our plotting and save functions
 '''
 
 from tests import goodness_fit_test, even_odd_test, test_Kolmogorov_Smirnov, test_gaps
@@ -28,11 +28,11 @@ from plots import graphing_scatterplots, graphing_histograms, graphing_show_all,
 
 # Main
 if __name__ == '__main__':
-    # General Parameters (all parameters can also be asked)
-    total_numbers = 380
-    # TO-DO: Save and directory parameters
-
-    print("PSEUDORANDOM GENERATORS")
+    # General Parameters
+    title = "PSEUDORANDOM GENERATORS"
+    print(title)
+    total_numbers = int(float(input("How many pseudorandoms numbers do you want to analyze?: ")))  # example: 380
+    save = {"mode": True, "route": "graphs/", "total": total_numbers } # If mode is False, the graphs won't be sabed
     print()
 
     # Middle Square Method
@@ -106,10 +106,9 @@ if __name__ == '__main__':
     # Table with tests' summaring and all generators' graphs
     print("Tests Results' Summaring")
     print()
-    tests_final_table(msm_results, mult_lcg_results, mix_lcg_results, pog_mt_results)
+    tests_final_table(msm_results, mult_lcg_results, mix_lcg_results, pog_mt_results, save)
 
-    graphing_scatterplots(msm_values, multiplicative_random_values, mixed_random_values, pog_mt_values)
-    graphing_histograms(msm_values, multiplicative_random_values, mixed_random_values, pog_mt_values)
+    graphing_scatterplots(msm_values, multiplicative_random_values, mixed_random_values, pog_mt_values, save)
+    graphing_histograms(msm_values, multiplicative_random_values, mixed_random_values, pog_mt_values, save)
     graphing_show_all()
-
-    # TO-DO: Optional save method (try-catched)...
+    print()
