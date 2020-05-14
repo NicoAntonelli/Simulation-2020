@@ -13,7 +13,7 @@ Python Libraries/Modules Used:
     - Pyplot:   Matplotlib Module for Graph Plotting
     - Seaborn:  Statistical and Scientific Graphs
     - Scypy:    Distributions like χ2
-(?) - Pandas:   THE TABLE...
+    - Pandas:   Series and DataFrame table for tests results' summaring
 
 Other Files:
     - generators:   File with our pseudorandom numbers generators
@@ -23,7 +23,7 @@ Other Files:
 
 from tests import goodness_fit_test, even_odd_test, test_Kolmogorov_Smirnov, test_gaps
 from generators import linear_congruential_generator, middle_square_method, python_generator
-from plots import graphing_scatterplots, graphing_histograms, graphing_show_all
+from plots import graphing_scatterplots, graphing_histograms, graphing_show_all, tests_final_table
 
 
 # Main
@@ -36,7 +36,7 @@ if __name__ == '__main__':
     print()
 
     # Middle Square Method
-    seed = 9731
+    seed = 5787 # Other: 9731
     msm_values = middle_square_method(seed, total_numbers)
     print("Middle Square Method")
     print(msm_values)
@@ -66,44 +66,48 @@ if __name__ == '__main__':
     print()
 
     # Tests
+    # Tests also displays more detailed info on console
     print("TESTS: Middle Square Method")
     print()
-    goodness_fit_test(msm_values)
-    even_odd_test(msm_values)  # 5787 passes the test, 9731 does not
-    test_Kolmogorov_Smirnov(msm_values)
-    test_gaps(msm_values)
+    msm_results = []
+    msm_results.append(goodness_fit_test(msm_values))
+    msm_results.append(even_odd_test(msm_values))
+    msm_results.append(test_Kolmogorov_Smirnov(msm_values))
+    msm_results.append(test_gaps(msm_values))
     print('-----------------------------------\n')
 
     print("TESTS: Multiplicative Linear Congruential Generator")
     print()
-    goodness_fit_test(multiplicative_random_values)
-    even_odd_test(multiplicative_random_values)
-    test_Kolmogorov_Smirnov(multiplicative_random_values)
-    test_gaps(multiplicative_random_values)
+    mult_lcg_results = []
+    mult_lcg_results.append(goodness_fit_test(multiplicative_random_values))
+    mult_lcg_results.append(even_odd_test(multiplicative_random_values))
+    mult_lcg_results.append(test_Kolmogorov_Smirnov(multiplicative_random_values))
+    mult_lcg_results.append(test_gaps(multiplicative_random_values))
     print('-----------------------------------\n')
 
     print("TESTS: Mixed Linear Congruential Generator")
     print()
-    goodness_fit_test(mixed_random_values)
-    even_odd_test(mixed_random_values)
-    test_Kolmogorov_Smirnov(mixed_random_values)
-    test_gaps(mixed_random_values)
+    mix_lcg_results = []
+    mix_lcg_results.append(goodness_fit_test(mixed_random_values))
+    mix_lcg_results.append(even_odd_test(mixed_random_values))
+    mix_lcg_results.append(test_Kolmogorov_Smirnov(mixed_random_values))
+    mix_lcg_results.append(test_gaps(mixed_random_values))
     print('-----------------------------------\n')
     
     print("TESTS: Python's own generator (Mersenne Twister)")
     print()
-    goodness_fit_test(pog_mt_values)
-    even_odd_test(pog_mt_values)
-    test_Kolmogorov_Smirnov(pog_mt_values)
-    test_gaps(pog_mt_values)
-
+    pog_mt_results = []
+    pog_mt_results.append(goodness_fit_test(pog_mt_values))
+    pog_mt_results.append(even_odd_test(pog_mt_values))
+    pog_mt_results.append(test_Kolmogorov_Smirnov(pog_mt_values))
+    pog_mt_results.append(test_gaps(pog_mt_values))
     print('-----------------------------------\n')
 
-    # TO-DO: Make other 2 tests...
+    # Table with tests' summaring and all generators' graphs
+    print("Tests Results' Summaring")
+    print()
+    tests_final_table(msm_results, mult_lcg_results, mix_lcg_results, pog_mt_results)
 
-    # TO-DO: Pandas --> Tests Table...
-
-    # Plots
     graphing_scatterplots(msm_values, multiplicative_random_values, mixed_random_values, pog_mt_values)
     graphing_histograms(msm_values, multiplicative_random_values, mixed_random_values, pog_mt_values)
     graphing_show_all()

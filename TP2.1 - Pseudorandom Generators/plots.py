@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 
 import matplotlib.pyplot as plt
+import numpy as np
 import seaborn as sns
+import pandas as pd
 
 # Scatter Plots (Separated)
 def graphing_scatterplots(msm_values, multiplicative_random_values, mixed_random_values, pog_mt_values):
@@ -64,6 +66,41 @@ def graphing_histograms(msm_values, multiplicative_random_values, mixed_random_v
     plt.title("Histograms")
     plt.setp(fig.get_axes(), xlabel="Number", ylabel="Random Value")
     plt.legend()
+    plt.tight_layout()
+
+
+def tests_final_table(msm_results, mult_lcg_results, mix_lcg_results, pog_mt_results):
+    # DataFrame
+    tests_names = ["Pearson χ2", "Parity", "KS", "Gaps"]
+    table = {
+            "Middle Squared Method":    pd.Series(msm_results, index=tests_names),
+            "Multiplicative LCG":       pd.Series(mult_lcg_results, index=tests_names),
+            "Mixed LCG":                pd.Series(mix_lcg_results, index=tests_names),
+            "Mersenne Twister":         pd.Series(pog_mt_results, index=tests_names),
+    }
+    table = pd.DataFrame(table)
+    table.style.set_properties(**{'text-align': 'center'})
+    
+    # Console print
+    print(table)
+    print()
+
+    # Plotting DataFrame
+    size = (8, 1.5)
+    fig, ax = plt.subplots(figsize = size)
+    fig.patch.set_visible(False)
+    fig.canvas.set_window_title("Tests Results' Summaring")
+    ax.axis('off')
+
+    colors = table.applymap(lambda x: '#98FB98' if x=='Approved' else '#FF775F') # Green and Red table
+    table_fig = ax.table(cellText=table.values, colLabels=table.columns, rowLabels=table.index, loc='center', cellLoc='center',
+        colColours=['black']*len(colors.columns), rowColours=['black']*len(colors), cellColours=colors.to_numpy())
+
+    for row in range(1, len(colors.columns)+1):
+        table_fig._cells[row, -1]._text.set_color('white')
+    for col in range(0, len(colors)):
+        table_fig._cells[0, col]._text.set_color('white')
+
     plt.tight_layout()
 
 
