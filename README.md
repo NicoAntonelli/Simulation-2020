@@ -12,7 +12,10 @@ Different strategies for playing roulette will be used (simulated) in order to a
 ## [TP2.1] - Pseudorandom Generators
 Study of pseudo-random numbers generators, then performing generation quality tests on them
 
+## [TP2.2] - Pseudorandoms with Different Distributions
+Study of pseudo-random numbers with different distribution's generator algorithms, then performing some tests on them
 
 [TP1.1]: ./TP1.1&#32;-&#32;Roulette&#32;Analysis
 [TP1.2]: ./TP1.2&#32;-&#32;Roulette&#32;Strategies
 [TP2.1]: ./TP2.1&#32;-&#32;Pseudorandom&#32;Generators
+[TP2.2]: ./TP2.2&#32;-&#32;Pseudorandoms&#32;with&#32;Different&#32;Distributions

@@ -24,7 +24,7 @@ Empirical
 ## Tests
 Statistics Parameters: Analytic vs Simulated (Mean and Variance)
 
-Kolmogorov_Smirnov
+Kolmogorov-Smirnov
 
 Cumulative Distribution Function (CDF) Comparative
 
