@@ -152,7 +152,7 @@ def plot_results(results, expected, save):
             x_label="N customers",
             y_label="P(n)",
             save=save,
-            name="n_curstomers_in_queue_probability",
+            name="n_customers_in_queue_probability",
         )
 
     # Show all the plots

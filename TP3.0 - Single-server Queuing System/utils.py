@@ -27,11 +27,11 @@ def get_expected_values(config):
             "Pd": None,
         }
 
-    Rho = Lambda / Mu  # Server utilization
+    Rho = Lambda / Mu            # Server utilization
     Lq = (Rho ** 2) / (1 - Rho)  # Average quantity of costumers in queue
-    Wq = Lq / Lambda  # Average delay time in queue
-    W = Wq + 1 / Mu  # Average delay time in the system
-    L = Lambda * W  # Average quantity of costumers in the system
+    Wq = Lq / Lambda             # Average delay time in queue
+    W = Wq + 1 / Mu              # Average delay time in the system
+    L = Lambda * W               # Average quantity of costumers in the system
     Pn = [
         (1 - Rho) * (Rho ** n) for n in range(config["num_delays_required"])
     ]  # N Clients in queue probability array

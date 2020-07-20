@@ -33,7 +33,7 @@ Graphics: Simulation results VS Expected values
 ![avg_num_in_the_system](./graphs/graph_10runs_10000delays_config2_avg_num_in_the_system.png)
 ![avg_delay_time_in_the_system](./graphs/graph_10runs_10000delays_config2_avg_delay_time_in_the_system.png)
 ![server_utilization](./graphs/graph_10runs_10000delays_config2_server_utilization.png)
-![n_customers_probability](./graphs/graph_10runs_10000delays_config2_n_curstomers_in_queue_probability.png)
+![n_customers_probability](./graphs/graph_10runs_10000delays_config2_n_customers_in_queue_probability.png)
 
 ## Example in the AnyLogic Simulations
 Simulation runs: 1, Total Customers Quantity: 30000, Arrival Rate: 1.5, Service Rate: 2
