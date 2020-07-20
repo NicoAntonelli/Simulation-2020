@@ -1,5 +1,5 @@
 # TP3.0 - Single-server Queuing System
-M/M/1 Queue Model: Simulation and Analysis
+M/M/1 Queue Model: Simulation and Analysis of common performance measures
 
 ## Models Comparison
 Analytic Solutions
