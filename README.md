@@ -21,8 +21,20 @@ M/M/1 Queue Model: Simulation and Analysis of common performance measures (Compa
 ## [AnyLogic Tutorials]
 Express tutorials made to learn the basics of anylogic and thus be able to perform a better final TP
 
-## [TPI] - Docking Services Simulation (Final TP)
-Real simulation of the critical processes of the organization "Servicios Portuarios SA" located in Argentina. From the arrival and unloading of the trucks, through the storage and conditioning services that are performed on the cereals, until finally the shipment.
+## [TPI] - Docking Services (Servicios Portuarios) Simulation - Final TP
+
+### Trucks' arrival to the port, storage and shipment of grains
+
+This work proposes a dynamic computational simulation to study the behavior
+and performance of the activities that make up the critical grain shipment process
+from one of Rosario’s ports (city considered to be the most important agro-export
+node in the world), through the implementation of measurable indicators for the
+different activities in the simulated process to then analyze, through an alternative
+model, how a specific change (such as increasing the silos’ unload rate by purchasing
+better conveyor belts) can decrease the shipping time of grains and how this change
+influences other activities in the process, eliminating bottlenecks and making the
+port a more desirable option compared to the competition, justifying whether the
+investment necessary to optimize such activities is worth it.
 
 [TP1.1]: ./TP1.1&#32;-&#32;Roulette&#32;Analysis
 [TP1.2]: ./TP1.2&#32;-&#32;Roulette&#32;Strategies
